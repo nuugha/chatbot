@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOC Network Visualization Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar glass">
+        <div>
+          <h1>SOC Cyber Range Dashboard</h1>
+          <p>Client-side attack simulation and IDS correlation visualization</p>
+        </div>
+        <div class="status-pill" id="simulationStatus">Idle</div>
+      </header>
+
+      <main class="layout">
+        <section class="canvas-wrap glass">
+          <svg id="networkCanvas" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="canvas-overlay">
+            <div class="metric"><span>Flows/s</span><strong id="flowsMetric">0</strong></div>
+            <div class="metric"><span>Anomaly Rate</span><strong id="anomalyMetric">0%</strong></div>
+            <div class="metric"><span>Detection Confidence</span><strong id="confidenceMetric">0%</strong></div>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel glass controls">
+            <h2>Simulation Control</h2>
+            <label>Speed <input id="speed" type="range" min="0.25" max="2.5" value="1" step="0.25" /></label>
+            <div class="btn-row">
+              <button id="startBtn">Start</button>
+              <button id="stopBtn">Stop</button>
+              <button id="resetBtn">Reset</button>
+            </div>
+            <h3>Scenarios</h3>
+            <div id="scenarioButtons" class="scenario-grid"></div>
+            <p id="scenarioDescription" class="hint">Select an attack scenario to preview and run.</p>
+          </section>
+
+          <section class="panel glass">
+            <h2>IDS Detection Pipeline</h2>
+            <ul id="pipelineLog" class="pipeline"></ul>
+          </section>
+
+          <section class="panel glass">
+            <h2>Real-time Alerts</h2>
+            <ul id="alertFeed" class="alerts"></ul>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
